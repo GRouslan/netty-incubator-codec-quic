@@ -415,8 +415,8 @@
                     <!-- Create an empty MANIFEST.MF file -->
                     <touch file="${project.build.outputDirectory}/META-INF/MANIFEST.MF" mkdirs="true" />
                     <!-- Required by boringssl -->
-                    <!-- <copy file="${ANDROID_NDK_HOME}/sources/cxx-stl/llvm-libc++/libs/${androidAbi}/libc++_shared.so"
-                      todir="${project.build.directory}/android-build/native-libs/${androidAbi}" /> -->
+                    <copy file="${ndkToolchain}/sysroot/usr/lib/${androidTriple}/${androidMinSdkVersion}/libc++_shared.so"
+                          todir="${project.build.directory}/android-build/native-libs/${androidAbi}" />
                   </target>
                 </configuration>
               </execution>
