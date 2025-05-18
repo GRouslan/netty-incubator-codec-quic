@@ -285,7 +285,7 @@
         <ldflags>-L${quicheHomeBuildDir} -lquiche -L${boringsslHomeBuildDir} -lssl -lcrypto</ldflags>
         <bundleNativeCode>META-INF/native/${jniLibName}.dll;osname=android;processor=${androidAbi}</bundleNativeCode>
         <ndkToolchain>${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64</ndkToolchain>
-        <extraLdflags>-Wl,-soname=${jniLibName}.so -Wl,--build-id=sha1 -Wl,--strip-debug -Wl,--exclude-libs,ALL -lm</extraLdflags>
+        <extraLdflags>-Wl,-soname=${jniLibName}.so -Wl,--build-id=sha1 -Wl,--strip-debug -Wl,--exclude-libs,ALL -lm -lc++_shared</extraLdflags>
 
         <extraConfigureArg>--host=${androidTriple}</extraConfigureArg>
 
@@ -414,6 +414,9 @@
                     <copy file="src/main/AndroidManifest.xml" todir="${project.build.directory}/android-build/" filtering="true" />
                     <!-- Create an empty MANIFEST.MF file -->
                     <touch file="${project.build.outputDirectory}/META-INF/MANIFEST.MF" mkdirs="true" />
+                    <!-- Required by boringssl -->
+                    <copy file="${ANDROID_NDK_HOME}/sources/cxx-stl/llvm-libc++/libs/${androidAbi}/libc++_shared.so"
+                      todir="${project.build.directory}/android-build/native-libs/${androidAbi}" />
                   </target>
                 </configuration>
               </execution>
