@@ -398,6 +398,26 @@
             <!-- Copy the native lib that was generated and the license material for attribution -->
             <executions>
               <execution>
+                <id>ndk-build</id>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <target>
+                    <echo message="Running ndk-build with Application.mk..." />
+                    <exec executable="${env.ANDROID_NDK_HOME}/ndk-build" failonerror="true">
+                      <env key="NDK_APPLICATION_MK" value="${project.basedir}/src/main/jni/Application.mk"/>
+                      <!-- <arg value="NDK_PROJECT_PATH=${basedir}/src/main"/> -->
+                      <!-- <arg value="APP_BUILD_SCRIPT=${basedir}/src/main/jni/Android.mk"/> -->
+                      <arg value="NDK_APPLICATION_MK=${project.basedir}/src/main/jni/Application.mk"/>
+                      <!-- передаём ABI через переменную, если нужно -->
+                      <!-- <arg value="APP_ABI=armeabi-v7a arm64-v8a"/> -->
+                    </exec>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+              <execution>
                 <id>copy-android-native-lib</id>
                 <phase>initialize</phase>
                 <goals>
