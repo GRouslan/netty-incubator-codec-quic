@@ -1147,6 +1147,7 @@
           </sdk>
           <androidManifestFile>${project.build.directory}/android-build/AndroidManifest.xml</androidManifestFile>
           <nativeLibrariesDirectory>${project.build.directory}/android-build/native-libs</nativeLibrariesDirectory>
+          <applicationMakefile>src/main/jni/Application.mk</applicationMakefile>
           <classesJarExcludes>
             <exclude>META-INF</exclude>
           </classesJarExcludes>
