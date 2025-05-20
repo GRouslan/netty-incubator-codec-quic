@@ -167,6 +167,8 @@ public interface QuicChannel extends Channel {
      */
     long peerAllowedStreams(QuicStreamType type);
 
+    public void sendAckEliciting() throws Exception;
+
     /**
      * Returns {@code true} if the connection was closed because of idle timeout.
      *
