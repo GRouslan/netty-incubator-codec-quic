@@ -288,6 +288,13 @@ final class QuicheQuicChannel extends AbstractChannel implements QuicChannel {
         }
     }
 
+    public void sendAckEliciting() throws Exception {
+       int res = Quiche.quiche_conn_send_ack_eliciting(connectionAddressChecked(connection));
+       if (res < 0 && res != Quiche.QUICHE_ERR_DONE) {
+           throw Quiche.convertToException(res);
+       }
+    }
+
     void attachQuicheConnection(QuicheQuicConnection connection) {
         this.connection = connection;
 
