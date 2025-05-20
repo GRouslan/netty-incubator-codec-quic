@@ -452,7 +452,7 @@ static void netty_quiche_conn_free(JNIEnv* env, jclass clazz, jlong conn) {
 }
 
 static jint netty_quiche_conn_send_ack_eliciting(JNIEnv* env, jclass clazz, jlong conn) {
-    (jint) quiche_conn_send_ack_eliciting((quiche_conn *) conn);
+    return (jint) quiche_conn_send_ack_eliciting((quiche_conn *) conn);
 }
 
 static jobjectArray netty_quiche_conn_peer_error0(JNIEnv* env, jclass clazz, jlong conn) {
