@@ -451,6 +451,10 @@ static void netty_quiche_conn_free(JNIEnv* env, jclass clazz, jlong conn) {
     quiche_conn_free((quiche_conn *) conn);
 }
 
+static jint netty_quiche_conn_send_ack_eliciting(JNIEnv* env, jclass clazz, jlong conn) {
+    (jint) quiche_conn_send_ack_eliciting((quiche_conn *) conn);
+}
+
 static jobjectArray netty_quiche_conn_peer_error0(JNIEnv* env, jclass clazz, jlong conn) {
     bool is_app = false;
     uint64_t error_code = 0;
@@ -1174,6 +1178,7 @@ static const JNINativeMethod fixed_method_table[] = {
   { "quiche_conn_recv", "(JJIJ)I", (void *) netty_quiche_conn_recv },
   { "quiche_conn_send", "(JJIJ)I", (void *) netty_quiche_conn_send },
   { "quiche_conn_free", "(J)V", (void *) netty_quiche_conn_free },
+  { "netty_quiche_conn_send_ack_eliciting", "(J)I", (void* ) netty_netty_quiche_conn_send_ack_eliciting },
   { "quiche_conn_peer_error0", "(J)[Ljava/lang/Object;", (void *) netty_quiche_conn_peer_error0 },
   { "quiche_conn_peer_streams_left_bidi", "(J)J", (void *) netty_quiche_conn_peer_streams_left_bidi },
   { "quiche_conn_peer_streams_left_uni", "(J)J", (void *) netty_quiche_conn_peer_streams_left_uni },
